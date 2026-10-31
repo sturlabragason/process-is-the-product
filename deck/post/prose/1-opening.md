@@ -1,0 +1,19 @@
+## title
+This post is the written version of my talk "The process is the product". The short version is this. Agents can now write and review the code, but a person still decides what done means and builds the checks that prove it.
+
+After the opening I walk through the stages of my method, numbered 0 to 9. Each stage solves one specific problem, and you only add a stage once your team actually runs into that problem. I wrote the stages down after bootstrapping them on one real project. After the stages come the few rules that apply across all of them, and then advice on how to start small. Most of this is old engineering practice. What is new is that agents are the ones following it. Under every slide I add the context I would give you in the room, with links into the [method docs](../../docs/03-method.md).
+
+## cheap
+With AI agents, producing work is cheap. Several agents can draft, build and review in parallel, and code arrives faster than anyone can read it line by line. Three things are still expensive. The first is knowing where the work stands right now, including the rules it must not break. The second is deciding what to do next. The third is proving that a piece of work is done.
+
+Agents help with all three, but they are not responsible for them. A person still decides what done means and builds the checks that prove it. So the engineer's job shifts from writing the code to designing the system that produces the code and checks it. If your team spends all its time prompting agents and none on the checks, you get more cheap output while the expensive work stays just as hard. I make the full argument in [what changed](../../docs/09-why-it-works.md#what-changed).
+
+## amplifier
+The quote on this slide comes from DORA's 2025 report on AI-assisted software development. The full sentence reads: "AI's primary role is as an amplifier, magnifying an organization's existing strengths and weaknesses."
+
+In practice, agents take whatever habits your team already has and run them faster. If your tests are thin, you get more untested code. If your reviews are careful, more changes get a careful review. Other practitioners say the same thing. Simon Willison writes that "LLMs actively reward existing top tier software engineering practices". Kent Beck says the value system in augmented coding is "similar to hand coding", except that he doesn't type much of the code himself. The rest of this post is about which habits to build, and almost all of them are older than agents. I map each stage of the method to the established practice it comes from in [why it works](../../docs/09-why-it-works.md#established-software-engineering-practice-new-executor).
+
+## gates
+I borrow three terms from Addy Osmani. An agent works in a loop. The tools, instructions and checks around that loop are the harness. Many harnessed loops working together make a software factory, with humans "owning the whole thing from above". On the slide each box is one harness. The agents loop inside it, and people stand at the gates between boxes. A gate is a point where a person must approve before work moves on.
+
+Every work item goes through three phases. In review the agent only reads and plans, and the phase ends at the plan gate. The build happens in its own isolated workspace and ends at the change gate. A human starts the release, which ends at the release gate. So a person approves the plan before the build, the change before the merge and the release before it runs. Each approval is a decision against criteria written down in advance, not a status update. That idea gives the slide its title. Osmani put it as "Human judgment doesn't leave the software factory. It relocates." The phases are described in the [work item procedure](../../docs/05-work-item-procedure.md#the-three-phases).

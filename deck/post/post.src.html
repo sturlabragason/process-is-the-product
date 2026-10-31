@@ -1,0 +1,379 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>The process is the product</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../../claude-for-small-business/business/brand/tokens.css">
+<style>
+  /* Brand v1.1 "Untangle": Plex Sans Light headings, hairline rules, one Lane blue element per view, Signal only for failure. */
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 96px; }
+  body { margin: 0; font: var(--weight-regular) var(--text-body)/var(--leading-body) var(--font-sans); color: var(--color-ink); background: var(--color-paper); -webkit-font-smoothing: antialiased; }
+  ::selection { background: var(--color-lane-tint); }
+  a { color: var(--color-lane); text-decoration: none; } a:hover { text-decoration: underline; }
+  a:focus-visible { outline: var(--focus); outline-offset: var(--focus-offset); }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 var(--gutter); }
+  .nav { position: sticky; top: 0; z-index: 5; height: 80px; background: var(--color-paper); border-bottom: var(--rule-hair); }
+  .nav .wrap { height: 100%; display: flex; align-items: center; justify-content: space-between; }
+  .nav img { height: 40px; display: block; }
+  .nav a.ix { font-size: var(--text-sm); }
+  .hero { padding: var(--space-8) 0 0; }
+  h1 { font: var(--weight-light) var(--text-display)/var(--leading-display) var(--font-sans); letter-spacing: var(--tracking-display); margin: 0 0 var(--space-3); max-width: 14ch; }
+  .lede { font-size: var(--text-lede); color: var(--color-body-strong); max-width: var(--measure); margin: 0; }
+  .meta { font-size: var(--text-sm); color: var(--color-grey); margin: var(--space-2) 0 0; }
+  .hero-motif { margin-top: var(--space-6); } .hero-motif svg { width: 100%; height: auto; display: block; }
+  section { padding: var(--space-8) 0; } section.fill { background: var(--color-fill); }
+  h2 { font: var(--weight-light) var(--text-h2)/var(--leading-heading) var(--font-sans); letter-spacing: var(--tracking-display); margin: 0 0 var(--space-6); }
+  .toc { display: grid; grid-template-columns: 5fr 7fr; gap: 0 var(--space-6); border-top: var(--rule-section); }
+  .toc > div { display: contents; }
+  .toc h3 { font: var(--weight-light) var(--text-h3)/1.2 var(--font-sans); margin: 0; padding: var(--space-3) 0; border-bottom: var(--rule-hair); }
+  .toc h3 a { color: var(--color-ink); }
+  .toc ol { list-style: none; margin: 0; padding: var(--space-2) 0; border-bottom: var(--rule-hair); }
+  .toc li { display: flex; gap: var(--space-2); padding: 4px 0; }
+  .toc li span { font: var(--text-sm)/1.9 var(--font-mono); color: var(--color-grey); min-width: 2.2em; }
+  article { margin: 0 0 var(--space-8); scroll-margin-top: 96px; } article:last-child { margin-bottom: 0; }
+  figure { margin: 0 0 var(--space-4); container-type: inline-size; }
+  .notes { display: grid; grid-template-columns: 5fr 7fr; gap: var(--space-6); margin-top: var(--space-5); }
+  .rail { border-top: var(--rule-section); padding-top: var(--space-2); font-size: var(--text-sm); color: var(--color-grey); display: flex; flex-direction: column; gap: var(--space-2); align-self: start; position: sticky; top: 112px; }
+  .rail .no { font: var(--text-xs) var(--font-mono); color: var(--color-grey); }
+  .rail ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 4px; color: var(--color-body-strong); }
+  .rail h4 { margin: 0; font: var(--weight-medium) var(--text-sm)/1.4 var(--font-sans); color: var(--color-ink); }
+  .rail code { font: var(--text-xs) var(--font-mono); }
+  .prose { max-width: var(--measure); color: var(--color-body-strong); border-top: var(--rule-hair); padding-top: var(--space-2); }
+  .prose p:first-child { color: var(--color-ink); }
+  .prose p { margin: 0 0 var(--space-3); }
+  .prose code { font: .9em var(--font-mono); color: var(--color-ink); }
+  footer { background: var(--color-charcoal); color: var(--color-grey-on-ink); padding: var(--space-6) 0; font-size: var(--text-sm); }
+  footer a { color: var(--color-lane-on-ink); }
+  @media (max-width: 760px) { .notes { grid-template-columns: 1fr; gap: var(--space-4); } .rail { order: 2; position: static; } .toc { grid-template-columns: 1fr; } .toc h3 { border-bottom: 0; padding-bottom: 0; } section { padding: var(--space-7) 0; } }
+  .slide { aspect-ratio: 16/9; border: 1px solid var(--color-hair); padding: 5.8cqw 6.7cqw 3.8cqw; display: flex; flex-direction: column; position: relative; overflow: hidden; cursor: pointer; background: var(--color-paper); }
+  .slide > * { position: relative; }
+  .by { font: var(--weight-regular) 1.6cqw/1.3 var(--font-sans); color: var(--color-grey); margin-top: 1.2cqw; }
+  .say { font: var(--weight-light) 5cqw/1.06 var(--font-sans); letter-spacing: -0.02em; margin: auto 0; max-width: 20ch; }
+  .say.up { margin: auto 0 0; }
+  .viz { margin: 3cqw 0 auto; display: flex; gap: 1.4cqw; align-items: stretch; font: 1.7cqw/1.3 var(--font-sans); max-width: 86%; }
+  .f { position: relative; margin-top: auto; display: flex; justify-content: space-between; align-items: center; font: 1.25cqw var(--font-sans); color: var(--color-grey); padding-top: 1.5cqw; }
+  .f .who { display: flex; gap: .95cqw; align-items: center; }
+  .f img { width: 2.1cqw; height: 2.1cqw; }
+  .f .n { font-family: var(--font-mono); }
+  .lockup { width: 22cqw; }
+  .title { font: var(--weight-light) 5.6cqw/1.02 var(--font-sans); letter-spacing: -0.02em; margin: 4cqw 0 1.4cqw; max-width: 22ch; }
+  .sub { font: var(--weight-regular) 1.6cqw/1.4 var(--font-sans); color: var(--color-grey); margin: 0; max-width: 44ch; }
+  .motif { position: absolute; left: 0; right: 0; bottom: 6.25cqw; height: 17cqw; }
+  .band { position: absolute; left: 0; right: 0; bottom: 7.8cqw; height: 5.6cqw; }
+  .motif svg, .band svg { width: 100%; height: 100%; display: block; }
+  .tag { position: absolute; right: 6.7cqw; top: 5.8cqw; font: var(--weight-medium) 1.25cqw/1 var(--font-mono); text-transform: uppercase; letter-spacing: .06em; color: var(--color-grey); border: 1px solid var(--color-grey); padding: .6cqw .9cqw; }
+  .box { flex: 1; border: var(--rule-section); padding: 1.1cqw 1.2cqw; }
+  .box.solid { background: var(--color-charcoal); color: var(--color-paper); border-color: var(--color-charcoal); }
+  .box.lane { background: var(--color-lane); color: var(--color-paper); border-color: var(--color-lane); }
+  .box.sig { border-color: var(--color-signal); color: var(--color-signal); }
+  .old { width: 30cqw; }
+  .lbl { display: block; font: var(--weight-medium) 1.2cqw/1.4 var(--font-mono); text-transform: uppercase; letter-spacing: .06em; opacity: .75; margin-bottom: .4cqw; }
+  .row { display: flex; gap: 1.1cqw; align-items: center; }
+  .st { border: var(--rule-section); padding: .6cqw .9cqw; white-space: nowrap; font: 1.45cqw/1.2 var(--font-mono); }
+  .st.sig { border-color: var(--color-signal); color: var(--color-signal); }
+  .st.ghost { border: 1px dashed var(--color-grey); color: var(--color-grey); font-family: var(--font-sans); }
+  .st.lane { border-color: var(--color-lane); background: var(--color-lane); color: var(--color-paper); }
+  .rule { flex: 1; height: 1px; background: var(--color-ink); min-width: 1cqw; }
+  .col { display: flex; flex-direction: column; gap: .9cqw; flex: 1; }
+  .gates { display: flex; gap: .7cqw; align-items: center; }
+  .tier { display: grid; grid-template-columns: 15cqw 1fr; gap: 1.2cqw; align-items: center; font-size: 1.8cqw; }
+  .gate { width: 2.6cqw; height: 2.6cqw; border: var(--rule-section); }
+  .stages { display: grid; grid-template-columns: repeat(5, 1fr); gap: .9cqw; width: 100%; }
+  .stages div { border: var(--rule-section); padding: .8cqw; font-size: 1.45cqw; min-height: 6.4cqw; }
+  .stages b { display: block; font: var(--weight-light) 2.4cqw/1.1 var(--font-sans); }
+  .stg { display: grid; grid-template-columns: repeat(5, 1fr); gap: 2cqw 1.6cqw; width: 100%; }
+  .stg > div { border-top: var(--rule-section); padding: .8cqw 0 0; display: flex; flex-direction: column; gap: .4cqw; min-height: 8cqw; }
+  .stg b { font: var(--weight-light) 3.4cqw/1 var(--font-sans); }
+  .stg strong { font: var(--weight-regular) 1.7cqw/1.2 var(--font-sans); }
+  .stg span { font: 1.3cqw/1.3 var(--font-sans); color: var(--color-grey); }
+  .stg code { font: 1.35cqw/1.2 var(--font-mono); color: var(--color-grey); }
+  .viz-note { font: 1.4cqw/1.3 var(--font-sans); color: var(--color-grey); margin-top: .9cqw; }
+  .list { margin: 2.6cqw 0 auto; padding: 0; list-style: none; font: var(--weight-light) 2.3cqw/1.35 var(--font-sans); counter-reset: n; }
+  .list li { counter-increment: n; padding-left: 4cqw; position: relative; margin-bottom: .6cqw; }
+  .list li::before { content: counter(n); position: absolute; left: 0; font: 1.6cqw/2.4 var(--font-mono); color: var(--color-grey); }
+
+  /* Stage slides (problem, fix, artifact), the stage strip, artifacts, SVG diagrams. */
+  .strip { position: absolute; left: 6.7cqw; top: 5.8cqw; display: flex; gap: .45cqw; align-items: center; font: 1.25cqw/1 var(--font-mono); color: var(--color-grey); }
+  .strip em { font-style: normal; margin-right: .6cqw; }
+  .strip span { width: 2.2cqw; height: 2.2cqw; border: var(--rule-section); display: grid; place-items: center; color: var(--color-ink); }
+  .strip span.skip { border: 1px dashed var(--color-grey); color: var(--color-grey); }
+  .strip span.on { background: var(--color-ink); color: var(--color-paper); }
+  .strip span.cur { background: var(--color-lane); border-color: var(--color-lane); color: var(--color-paper); }
+  .two { display: grid; grid-template-columns: 1.05fr 1fr; gap: 4cqw; align-items: center; margin: auto 0; }
+  .two .say { font-size: 4.1cqw; margin: 0; max-width: 16ch; }
+  .fix { display: flex; gap: 1.2cqw; align-items: baseline; font: var(--weight-regular) 2.1cqw/1.3 var(--font-sans); color: var(--color-body-strong); margin-top: 2.2cqw; }
+  .fix::before { content: ""; flex: none; width: 3cqw; height: 1px; background: var(--color-ink); transform: translateY(-.55cqw); }
+  .art { border: var(--rule-hair); background: var(--color-fill); padding: 1.3cqw 1.5cqw; font: 1.4cqw/1.55 var(--font-mono); white-space: pre; overflow: hidden; }
+  .art .fn { color: var(--color-grey); border-bottom: var(--rule-hair); padding-bottom: .6cqw; margin-bottom: .8cqw; }
+  .art .g { color: var(--color-grey); }
+  .art .hl { background: var(--color-paper); outline: 1px solid var(--color-ink); }
+  .art .sig { color: var(--color-signal); }
+  .box.ghost { border: 1px dashed var(--color-grey); color: var(--color-grey); }
+  .grp { flex: 3; border: var(--rule-hair); padding: .9cqw 1cqw 1cqw; display: flex; flex-direction: column; gap: .6cqw; }
+  .grp .row { gap: 1cqw; align-items: stretch; }
+  .box small { display: block; font-size: 1.35cqw; line-height: 1.35; color: var(--color-grey); margin-top: .4cqw; }
+  .bars { display: grid; grid-template-columns: 11cqw 5cqw 1fr; gap: 1.6cqw 1.4cqw; align-items: center; width: 100%; font-size: 1.8cqw; }
+  .bars .b { height: 2.4cqw; background: var(--color-ink); }
+  .bars .b.sig { background: var(--color-signal); }
+  .levels { display: flex; align-items: flex-end; gap: .9cqw; width: 100%; height: 15cqw; }
+  .levels div { flex: 1; border-top: var(--rule-principle); background: var(--color-fill); padding: .7cqw .8cqw; font-size: 1.5cqw; }
+  .levels b { display: block; font: var(--weight-light) 2.4cqw/1.1 var(--font-sans); }
+  .cmp { display: grid; grid-template-columns: 1fr 1fr; gap: .9cqw 1.4cqw; width: 100%; font-size: 1.9cqw; }
+  .cmp > div { border-top: var(--rule-section); padding-top: .7cqw; }
+  .viz svg { width: 100%; height: auto; display: block; overflow: visible; font-family: var(--font-sans); }
+  .viz svg text { fill: currentColor; }
+  .viz svg text.g { fill: var(--color-grey); }
+  .slide svg .ln { stroke-dasharray: 1; stroke-dashoffset: 1; }
+  .slide.play svg .ln { animation: line 1.1s cubic-bezier(.4,0,.2,1) forwards; animation-delay: calc(var(--i, 0) * 180ms); }
+  .slide s { color: var(--color-grey); }
+
+  /* Motion: one restrained move per slide, no bounce. The motif lines draw in, the blue lane last. Replays on click. */
+  .slide [data-m] { opacity: 0; }
+  .slide.play [data-m="fade"] { animation: fade .5s ease-out forwards; animation-delay: calc(var(--i, 0) * 160ms); }
+  .slide.play [data-m="wipe"] { animation: wipe .7s cubic-bezier(.2,0,0,1) forwards; animation-delay: calc(var(--i, 0) * 160ms); }
+  .slide.play [data-m="snap"] { animation: snap .01s steps(1) forwards; animation-delay: calc(200ms + var(--i, 0) * 220ms); }
+  .slide.play [data-m="draw"] { opacity: 1; transform-origin: left; animation: draw .45s ease-out both; animation-delay: calc(var(--i, 0) * 220ms); }
+  .slide.play [data-m="flip"] { opacity: 1; animation: flip .01s steps(1) forwards; animation-delay: calc(900ms + var(--i, 0) * 350ms); }
+  .slide.play [data-m="fill"] { opacity: 1; animation: fill .01s steps(1) forwards; animation-delay: calc(300ms + var(--i, 0) * 260ms); }
+  .motif path, .band path { stroke-dasharray: 1; stroke-dashoffset: 1; }
+  .motif rect, .band rect { opacity: 0; }
+  .slide.play .motif path, .slide.play .band path { animation: line 2.2s cubic-bezier(.4,0,.2,1) forwards; animation-delay: calc(var(--k, 0) * 70ms); }
+  .slide.play .motif rect, .slide.play .band rect { animation: snap .01s steps(1) forwards; animation-delay: 2.4s; }
+  @keyframes line { to { stroke-dashoffset: 0; } }
+  @keyframes fade { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+  @keyframes wipe { from { opacity: 1; clip-path: inset(0 100% 0 0); } to { opacity: 1; clip-path: inset(0 0 0 0); } }
+  @keyframes snap { to { opacity: 1; } }
+  @keyframes draw { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+  @keyframes flip { to { border-color: var(--color-signal); color: var(--color-signal); } }
+  @keyframes fill { to { background: var(--color-ink); } }
+  .slide.play [data-m="dim"] { animation: dim .5s ease-out 1.8s both; }
+  @keyframes dim { from { opacity: 1; } to { opacity: .28; } }
+  .flip-txt::after { content: "done"; }
+  .slide.play .flip-txt::after { animation: fliptxt .01s steps(1) forwards; animation-delay: inherit; }
+  @keyframes fliptxt { to { content: "not done"; } }
+  body.static .slide [data-m], body.static .slide .flip-txt::after, body.static .slide path, body.static .slide rect, body.static .slide .ln { animation-delay: 0s !important; animation-duration: 1ms !important; }
+  @media (prefers-reduced-motion: reduce) { .slide [data-m] { opacity: 1 !important; animation: none !important; } .motif path, .band path, .slide svg .ln { stroke-dashoffset: 0; animation: none !important; } .motif rect, .band rect { opacity: 1; } }
+</style>
+</head>
+<body>
+<div class="nav"><div class="wrap"><img id="lockup" alt="Sturla Bragason, platform and AI engineering"><a class="ix" href="#index">Index</a></div></div>
+<div class="hero"><div class="wrap">
+  <h1>The process is the product</h1>
+  <p class="lede">What to build when agents write the code. This is my talk as a page: each slide, then what I say about it and where it comes from in the guide.</p>
+  <p class="meta"><span id="count"></span> slides · click a slide to replay its animation</p>
+</div><div class="hero-motif" id="hero-motif"></div></div>
+<section id="index"><div class="wrap"><h2>Index</h2><div class="toc" id="toc"></div></div></section>
+<main id="deck"></main>
+<footer><div class="wrap">Sturla Bragason · platform and AI engineering · the guide is on <a href="https://github.com/sturlabragason/process-is-the-product">GitHub</a></div></footer>
+<script>
+const ICON = '../../../claude-for-small-business/business/brand/logo/icon.svg';
+const LOCKUP = '../../../claude-for-small-business/business/brand/logo/lockup.svg';
+// Untangle motif, generated by the brand's build_motif.py at build time. Never redrawn by hand.
+const MOTIF_TITLE = '%%MOTIF_TITLE%%', MOTIF_CLOSE = '%%MOTIF_CLOSE%%', MOTIF_HERO = '%%MOTIF_HERO%%';
+const foot = n => `<div class="f"><span class="who"><img src="${ICON}" alt="">Sturla Bragason</span><span class="n">${n}</span></div>`;
+
+// viz helpers. data-m sets the motion, --i the order.
+const m = (kind, i, html, cls='') => `<div class="${cls}" data-m="${kind}" style="--i:${i}">${html}</div>`;
+const boxes = (items, kind='snap') => `<div class="viz">${items.map((t,i)=>m(kind,i,t,'box'+(t.startsWith('!')?' sig':'')).replace('>!','>')).join('')}</div>`;
+const flow = (items) => `<div class="viz"><div class="row" style="width:100%">${items.map((t,i)=>(i?`<span class="rule" data-m="draw" style="--i:${i}"></span>`:'')+`<span class="st${t.startsWith('!')?' sig':t.startsWith('^')?' lane':t.startsWith('~')?' ghost':''}" data-m="snap" style="--i:${i}">${t.replace(/^[!^~]/,'')}</span>`).join('')}</div></div>`;
+
+// Stage strip: earlier stages in ink, the one this slide is about in blue.
+const strip = (cur, name) => `<div class="strip"><em>stage ${cur}, ${name}</em>${[0,1,2,3,4,5,6,7,8,9].map(i=>{
+  const c = i===cur ? 'cur' : i<cur ? 'on' : '';
+  return `<span class="${c}"${i===cur?' data-m="snap" style="--i:2"':''}>${i}</span>`; }).join('')}</div>`;
+// Artifact from the repo. Line prefixes: '~' grey, '*' highlighted, '!' signal red.
+const art = (file, lines) => `<div class="art" data-m="fade" style="--i:1"><div class="fn">${file}</div>${lines.map((l,i)=>{
+  const c = {'~':'g','*':'hl','!':'sig'}[l[0]] || '';
+  return `<div class="${c}" data-m="fade" style="--i:${i+3}">${c?l.slice(1):l}</div>`; }).join('')}</div>`;
+const ln = (d, i, extra='') => `<path class="ln" pathLength="1" d="${d}" style="--i:${i}" fill="none" stroke="currentColor" stroke-width="2" ${extra}/>`;
+
+const parts = [
+ ['Opening', [
+  {id:'title', k:'summary', note:'Spoken summary: agents can write and review the code now. A person still decides what done means and builds the checks. Then I go through the stages, each one starting from the failure that tells you it is needed. I bootstrapped them on one real project. After that come the rules that hold it together and how to start small. Most of it is old practice that agents now follow.', fact:'', src:'README · 09 What changed'},
+ ]],
+ ['The problem', [
+  {id:'cheap', noBand:1, say:'Producing work is cheap now',
+   viz:`<div class="viz" style="max-width:100%"><div class="row" style="width:100%;align-items:stretch">${m('snap',0,'<span class="lbl">cheap</span>making code','box ghost" style="flex:1;align-self:center;--i:0')}<span class="rule" data-m="draw" style="--i:1;align-self:center"></span><div class="grp" data-m="fade" style="--i:2"><span class="lbl">still expensive</span><div class="row">${[['Knowing the context',''],['Deciding what comes next',''],['Proving it is done','']].map(([t,d],i)=>m('snap',i+3,t+(d?`<small>${d}</small>`:''),'box')).join('')}</div></div></div></div>`,
+   fact:'Three things stay expensive: knowing the context (the current state, the boundaries, what must not break), deciding what comes next, and proving that a piece of work is done.',
+   note:'Agents can write the code and review it too. A person still decides what done means and builds the checks that prove it.', src:'09 What changed · 03 Stages 0 to 2', mo:'wipe'},
+  {id:'amplifier', by:'DORA, State of AI-assisted Software Development, 2025', say:'"AI\'s primary role is as an amplifier"',
+   viz:`<div class="viz"><div class="bars"><span>strengths</span>${m('draw',0,'','b')}${m('draw',2,'','b')}<span>weaknesses</span>${m('draw',1,'','b sig')}${m('draw',3,'','b sig')}</div></div>`,
+   fact:'The full sentence goes on: "magnifying an organization\'s existing strengths and weaknesses."',
+   note:'Whatever habits a team already has, agents run them faster. The rest of the talk is about which habits to have.', src:'09 Established practice', mo:'fade', hero:1},
+  {id:'gates', noBand:1, say:'Human judgment moves to the gates',
+   viz:`<div class="viz" style="max-width:100%"><svg viewBox="0 0 1000 260">
+     ${ln('M2 40 H998 V258 H2 Z',0,'stroke-width="1" style="--i:0;color:var(--color-grey)"')}<text x="16" y="68" class="g" font-size="18">factory</text>
+     ${[['review','read-only'],['build','own worktree'],['release','a human starts it']].map(([t,d],i)=>{const x=40+i*310;return `${ln(`M${x} 90 H${x+200} V230 H${x} Z`,1+i*2)}<text x="${x+14}" y="116" font-size="19" data-m="fade" style="--i:${1+i*2}">${t}</text><text x="${x+14}" y="216" class="g" font-size="15" data-m="fade" style="--i:${1+i*2}">${d}</text>${i<2?`${ln(`M${x+104} 160 a28 28 0 1 0 56 0 a28 28 0 1 0 -56 0`,2+i*2)}<text x="${x+132}" y="165" class="g" font-size="14" text-anchor="middle" data-m="fade" style="--i:${2+i*2}">agents</text>`:''}${ln(`M${x+200} 160 H${x+310}`,2+i*2,'stroke-width="1.5"')}<rect x="${x+236}" y="141" width="38" height="38" fill="currentColor" data-m="snap" style="--i:${3+i*2}"/><text x="${x+255}" y="206" font-size="16" text-anchor="middle" data-m="fade" style="--i:${3+i*2}">${['plan','change','release'][i]}</text>`}).join('')}
+     <text x="1000" y="24" class="g" font-size="17" text-anchor="end" data-m="fade" style="--i:9">a person approves each gate before the action</text></svg></div>`,
+   fact:'An agent runs in a loop. The tooling, instructions and checks around it are the harness. Many harnessed loops working together are a software factory. Each work item passes three phases, and each ends at a gate that a person approves before the action happens: the plan before the build, the change before the merge, the release before it runs.',
+   note:'Osmani\'s terms for loop, harness and factory. Each box is a harness. The agents loop inside it, and people stand at the gates between. This is where the title comes from.', src:'09 What changed, Thesis 2 · 05 The three phases', mo:'wipe', hero:1},
+ ]],
+ ['The stages', [
+  {id:'stages', noBand:1, say:'The method is ten stages',
+   viz:`<div class="viz" style="max-width:100%;flex-direction:column;margin-top:2cqw"><div class="stg">${[
+     ['AI stance','what agents may use and touch','ai-stance.md'],
+     ['Situation','what is actually true','situation.md'],
+     ['Context file','the same start for every session','AGENTS.md'],
+     ['Roles','one writer, never self-approved','roles.md'],
+     ['Plan','slow requests leave first','plan.md'],
+     ['Backlog','small items, each with a check','backlog.md'],
+     ['Isolation','one workspace per item','git worktree'],
+     ['Procedure','the same steps and gates','work-item skill'],
+     ['Status check','status matches reality','verify_status.py'],
+     ['Retro','the instructions stay true','audit findings'],
+   ].map(([t,d,o],i)=>m('snap',i,`<b>${i}</b><strong>${t}</strong><code>${o}</code>`)).join('')}</div>
+   <div class="viz-note" data-m="fade" style="--i:11">Written down after bootstrapping them on one real project.</div></div>`,
+   fact:'Each stage has a purpose and an output, usually one file. Each also has a trigger, the failure that shows you need it, and you add the stage when the trigger fires.',
+   note:'One line per stage, said aloud: 0, what agents may use and touch. 1, what is actually true. 2, the same start for every session. 3, one writer, never self-approved. 4, slow requests leave first. 5, small items, each with a check. 6, one workspace per item. 7, the same steps and gates. 8, status matches reality. 9, the instructions stay true. Then I go through the ones worth a slide. That project is where I found the stages, not a showcase for them.', src:'03 Stages 0 to 9 · 08 intro', mo:'snap', hero:1},
+  {id:'s0', say:'Agents get access nobody would give a person', fix:'Give them the same rules as people', strip:strip(0,'AI stance · untested proposal'),
+   art: art('stage 0, in short', ['~## Already in place','  no secrets in the repository','  least privilege, per identity','  no production access by default',' ','## New for agents','*  approved tools','*  budget owner and limit']),
+   fact:'Most of stage 0 is practice you already have: no secrets in code, least privilege, data classification. Agents get no production access by default. The new parts are which AI tools are approved and who owns the budget for tokens and agent compute.',
+   note:'If your IAM and secret handling are sound, this stage is short. Treat an agent as one more identity with the least access it needs. The whole stage is an untested proposal.', src:'03 Stage 0 · templates/docs/ai-stance.md · templates/AGENTS.md'},
+  {id:'s1', say:'The plan rests on facts nobody checked', fix:'Rate every input before you plan', strip:strip(1,'situation'),
+   art: art('docs/situation.md', ['## Inputs','| Input          | Quality   |','*| infrastructure | wrong     |','~  confirmed, unconfirmed, wrong','','## Gap analysis','| Current | Target | Gap |']),
+   fact:'The trigger: the inputs are scattered, contradictory or of unknown quality. Rate each one confirmed, unconfirmed or wrong, then write the gap between current and target.',
+   note:'One wrong input found on day 1 changes the plan cheaply. Found later, it costs a rewrite.', src:'03 Stage 1 · templates/docs/situation.md'},
+  {id:'s2', say:'Every session starts from zero', fix:'One context file that every tool reads', strip:strip(2,'context file'),
+   art: art('AGENTS.md', ['## Invariants','*1. Done means verified by a command','2. No stored secrets in the repository','3. No production personal data in','   agent context','4. Irreversible actions need a','   recorded human approval first']),
+   fact:'The trigger: you keep repeating yourself to each new session, and instructions contradict each other. One file holds the rules that never bend, and every agent loads it.',
+   note:'If several AI tools are in use, link the same file under the name each one reads.', src:'03 Stage 2 · templates/AGENTS.md'},
+  {id:'s4', say:'Slow approvals block you late', fix:'Send every request in one pack, early', strip:strip(4,'phased plan'),
+   art: art('request-pack.md', ['Reply needed by: YYYY-MM-DD','','| # | Request          | Blocks |','*| 1 | service identity | B-004  |','| 2 | ...              | ...    |','','~Approved to send by two people']),
+   fact:'The trigger: work starts before its dependencies are ready. Anything with a lead time over a week starts on day 1, even if the rest of the plan waits.',
+   note:'The requests with the longest wait go first. Stage 3, roles, I cover with review later.', src:'03 Stage 4 · templates/request-pack.md'},
+  {id:'s6', say:'Parallel sessions overwrite each other', fix:'One item, one worktree, one owner', strip:strip(6,'work isolation'),
+   art:`<div class="viz" style="margin:0;max-width:100%"><svg viewBox="0 0 520 300">
+     <text x="0" y="16" class="g" font-size="17">before</text><text x="290" y="16" class="g" font-size="17">after</text>
+     ${[0,1,2].map(i=>`<circle cx="12" cy="${70+i*90}" r="9" fill="currentColor" data-m="snap" style="--i:${i}"/>${ln(`M24 ${70+i*90} C110 ${70+i*90} 110 160 176 160`,i+1,'stroke-width="1.5"')}`).join('')}
+     <rect x="178" y="130" width="70" height="60" fill="none" stroke="var(--color-signal)" stroke-width="2" data-m="snap" style="--i:4"/><text x="213" y="216" font-size="15" text-anchor="middle" data-m="fade" style="fill:var(--color-signal);--i:4">1 checkout</text>
+     ${[0,1,2].map(i=>`<circle cx="302" cy="${70+i*90}" r="9" fill="currentColor" data-m="snap" style="--i:${5+i}"/>${ln(`M314 ${70+i*90} H420`,6+i,'stroke-width="1.5"')}<rect x="422" y="${48+i*90}" width="70" height="44" fill="none" stroke="currentColor" stroke-width="2" data-m="snap" style="--i:${7+i}"/><text x="457" y="${75+i*90}" font-size="14" text-anchor="middle" data-m="fade" style="--i:${7+i}">B-0${14+i}</text>`).join('')}
+     </svg></div>`,
+   fact:'The trigger: parallel work collides, or changes leak between tasks. Each work item gets its own git worktree and a single owner.',
+   note:'The fix is cheap, so add it the moment a second session runs at the same time as the first.', src:'03 Stage 6', hero:1},
+  {id:'s7', say:'Every item repeats the same decisions', fix:'Write down the cleanest run', strip:strip(7,'standard procedure'),
+   art: art('work-item procedure', ['1  review    read-only','~   gate: plan','2  build     own worktree','~   gate: change','3  release   a human starts it','~   gate: release']),
+   fact:'The trigger: every item repeats the same small decisions, and the same mistake happens twice. Run a few items by hand, then write the cleanest end-to-end run down as the procedure.',
+   note:'Every gate comes before the action it approves.', src:'03 Stage 7 · 05 The three phases'},
+  {id:'s8', say:'Rows marked done are not done', fix:'A script checks every status', strip:strip(8,'status verification'),
+   art: art('terminal', ['$ python3 tools/verify_status.py \\','    docs/backlog.md','!B-002: done without evidence','~1 problem(s) in 3 row(s)','$ echo $?','!1']),
+   fact:'The trigger: an item is marked done when it isn\'t, for example merged but never deployed. The script checks every status against its evidence and fails the run.',
+   note:'Real output from the repo\'s script, run on a copy of the backlog template with one merged row changed to done.', src:'03 Stage 8 · tools/verify_status.py', hero:1},
+  {id:'s9', say:'The instructions drift from the system', fix:'Audit the instructions like the code', strip:strip(9,'retrospective'),
+   art: art('audit-checklist.md', ['| Check            | Severity |','*| Stale paths      | high     |','*| Stale components | high     |','| Contradictions   |          |','| Duplicates       |          |','~  ...15 checks in total']),
+   fact:'The trigger: the context file, roles or procedures describe a situation that has since changed. Put the next audit date in the plan.',
+   note:'Agents follow stale instructions just as faithfully as current ones.', src:'03 Stage 9 · templates/audit-checklist.md'},
+  {id:'rules', say:'Five rules from incidents', k:'list', items:['Measure before you change','A system\'s own "success" is not evidence','Recount changes before release','Write the done entry first','A human "no" stands'],
+   fact:'Each rule came from something that went wrong while the method was being bootstrapped.',
+   note:'If there is time, I tell one of the stories.', src:'08 What the case shows', mo:'fade'},
+ ]],
+ ['The method', [
+  {id:'kaizen', say:'A mistake that repeats becomes a rule',
+   viz:`<div class="viz"><svg viewBox="0 0 900 230">
+     ${ln('M0 210 H220 V150 H440 V90 H660 V30 H900',0,'stroke-width="2.5"')}
+     <text x="0" y="196" font-size="20" data-m="fade" style="--i:1">standard procedure</text>
+     ${[0,1,2].map(i=>`<circle cx="${220+i*220}" cy="${180-i*60}" r="7" data-m="snap" style="fill:var(--color-signal);--i:${2+i}"/><text x="${232+i*220}" y="${136-i*60}" font-size="20" data-m="fade" style="--i:${3+i}">+ rule</text>`).join('')}</svg></div>`,
+   fact:'A sequence that works becomes the standard procedure. Each repeated mistake adds a rule to it. There can be no kaizen without a standard.',
+   note:'Each red dot is an incident. Ohno, via the Lean Enterprise Institute: standardize first, then improve.', src:'09 Thesis 3', mo:'wipe', hero:1},
+  {id:'merged', say:'Merged is not done', viz: flow(['ready','in-progress','in-review','merged','~checked where it runs','^done']),
+   fact:'Merged means it is in the code. Done means someone checked it where it runs. Blocked is the only detour, and it records what blocks it and since when.',
+   note:'Reporting merged as done is the failure the status check exists to catch.', src:'05 Status transitions', mo:'snap', hero:1},
+  {id:'evidence', say:'"Should work" is not evidence', viz: boxes(['<span class="lbl">computational</span>a command proves it','<span class="lbl">inferential</span>a named human judges it']),
+   fact:'Neither is a green pipeline. Evidence is the command that ran on the final commit, and its output. Usability and value cannot be computed, so a named human approves those.',
+   note:'Anthropic\'s own advice is to ask the agent for exactly that. Try to turn a criterion into a count or a measurement first.', src:'05 Evidence quality, Inferential evidence', mo:'snap'},
+  {id:'risk', hero:1, say:'Risk sets the gates', tag:'untested proposal',
+   viz:`<div class="viz"><div class="col">${[['local',1],['shared',2],['irreversible',3]].map(([a,n],r)=>`<div class="tier"><b>${a}</b><span class="gates">${[0,1,2].map(g=>`<span class="gate" ${g<n?`data-m="fill" style="--i:${r*3+g}"`:''}></span>`).join('')}${r==2?m('snap',9,'+ 2nd human','st lane'):''}</span></div>`).join('')}</div></div>`,
+   fact:'Local is reversible and yours. Shared means others depend on it. Irreversible means production, money or personal data.',
+   note:'This came after the project, so the slide says so. Approvals are dated before the action they approve.', src:'05 Risk tiers', mo:'fill'},
+  {id:'review', say:'Reviewers never see the reasoning',
+   viz:`<div class="viz"><div class="row" style="width:100%;align-items:stretch">${m('snap',0,'<span class="lbl">author</span>the change<br>the criteria<br><s>the reasoning</s>','box')}<span class="rule" data-m="draw" style="--i:1;align-self:center"></span>${m('snap',2,'<span class="lbl">reviewer</span>the change<br>the criteria','box')}</div></div>`,
+   fact:'Reviewers get the change and the acceptance criteria. Authors do not approve their own work.',
+   note:'Separate author and reviewer is stage 3, roles.', src:'03 Stage 3 · 09 Principle 6', mo:'wipe'},
+ ]],
+ ['Starting', [
+  {id:'sentence', say:'Start from a failure you can name',
+   viz:`<div class="viz" style="max-width:100%;align-items:center">${art('your trigger', ['The failure:   every agent session starts','               from zero','Where I saw it: I explain the same setup','                each time'])}<span class="rule" data-m="draw" style="--i:6;max-width:6cqw"></span>${m('snap',7,'<span class="lbl">add</span>stage 2, context file','box lane" style="flex:none;--i:7')}</div>`,
+   fact:'Write one sentence: the failure you are seeing and where you saw it. That sentence is your trigger, and it tells you which stage to add. If you cannot write it, you probably do not need the method yet. Small changes that take under an hour and are easy to undo skip all of this.',
+   note:'The example is the one from the quick start. Copy only the files for the stages you are using. Keep one habit even for small changes: do not call it done until you have seen it work.', src:'01 Before you start · 06 When the method is not worth it', mo:'wipe'},
+  {id:'maturity', say:'Skip the stages you don\'t need yet', tag:'untested proposal',
+   viz:`<div class="viz"><div class="levels">${[['ad hoc','no stages'],['briefed','+ 0, 1, 2'],['planned','+ 4, 5'],['factory','+ 3, 6, 7'],['self-verifying','+ 8, 9']].map(([t,st],i)=>`<div data-m="fade" style="--i:${i};height:${20+i*20}%"><b>${i}</b>${t}<code style="display:block;font:1.3cqw/1.4 var(--font-mono);margin-top:.3cqw">${st}</code></div>`).join('')}</div></div>`,
+   fact:'Each level adds stages when a condition holds: a second session or person joins, the work takes more than a week, work runs in parallel, or other people rely on your status.',
+   note:'People copy the end state. Start at the level your current failure needs. The same stages also work outside software, such as an office move.', src:'06 The default, Maturity levels · 07', mo:'wipe'},
+ ]],
+ ['Close', [
+  {id:'beck', by:'Kent Beck, 2025', say:'"I don\'t type much of that code."',
+   viz:`<div class="viz"><div class="cmp">${m('fade',0,'<span class="lbl">hand coding</span>','')}${m('fade',0,'<span class="lbl">augmented coding</span>','')}${m('fade',1,'tidy code that works','')}${m('fade',2,'tidy code that works','')}${m('fade',3,'I type it','')}${m('fade',4,'agents type it','')}</div></div>`,
+   fact:'He says the value system is the same as in hand coding: "tidy code that works."',
+   note:'Code review, small batches, a definition of done. None of it is new. Agents now do the work, so skipping these practices costs more.', src:'09 Established practice', mo:'fade'},
+  {id:'old', hero:1, say:'None of this is new', viz:`<div class="viz"><div class="col">${[['Code review','reviewer agent, read-only'],['Short-lived branches','one worktree per item'],['Definition of Done','status script'],['Retrospectives','prompt audits']].map(([a,b],i)=>`<div class="row">${m('fade',i,a,'old')}<span class="rule" data-m="draw" style="--i:${i+4}"></span>${m('snap',i+4,b,'st')}</div>`).join('')}</div></div>`,
+   fact:'Most of the method is established practice. Agents now carry it out, so skipping it costs more.',
+   note:'The left column has been around for decades. Only the right column is new.', src:'09 Established practice', mo:'fade'},
+  {id:'end', k:'end', fact:'', note:'The repo has the full guide, the templates and the status script. Start with the quick start.', src:'README, 01 Quick start'},
+ ]],
+];
+
+const REPO = 'https://github.com/sturlabragason/process-is-the-product/blob/main';
+const DOCS={'01':['01-quick-start','Quick start'],'02':['02-worked-example','Worked example'],'03':['03-method','The method, stage by stage'],'04':['04-variants','Variants'],'05':['05-work-item-procedure','Work item procedure'],'06':['06-adoption-and-measurement','Adoption and measurement'],'07':['07-beyond-software','Beyond software'],'08':['08-case-study','Where the method came from'],'09':['09-why-it-works','Why it works'],'10':['10-glossary','Glossary'],'11':['11-references','References']};
+const srcLinks = src => src.split(' · ').map(x => {
+  const d = x.match(/^(\d\d)\s*(.*)$/);
+  if (d) { const [f, t] = DOCS[d[1]]; const sec = d[2] && d[2] !== 'intro' ? `, ${d[2]}` : ''; return `<a href="${REPO}/docs/${f}.md">${t}</a>${sec}`; }
+  if (x.startsWith('README')) return `<a href="https://github.com/sturlabragason/process-is-the-product#readme">README</a>${x.slice(6)}`;
+  return `<a href="${REPO}/${x}"><code>${x}</code></a>`;
+}).map(x => `<li>${x}</li>`).join('');
+const PROSE = '%%PROSE%%';
+const summary = () => `<div class="motif">${MOTIF_TITLE}</div>
+  <img class="lockup" src="${LOCKUP}" alt="Sturla Bragason, platform and AI engineering">
+  <div class="title" data-m="wipe">The process is the product</div>
+  <p class="sub" data-m="fade" style="--i:2">What to build when agents write the code</p>`;
+const end = () => `<div class="band">${MOTIF_CLOSE}</div>
+  <div class="say" data-m="wipe" style="margin:auto 0 0">The process is the product</div>
+  <p class="sub" data-m="fade" style="--i:2;margin:1.6cqw 0 auto">Start with the quick start in the repo</p>
+  ${foot(total)}`;
+const plain = h => h.replace(/<[^>]+>/g,'').replace(/\\'/g,"'");
+const headOf = s => s.k==='summary' ? 'The process is the product' : s.k==='end' ? 'Start with the quick start' : plain(s.say);
+
+const total = parts.reduce((a,[,s])=>a+s.length,0);
+let n = 0, html = '', toc = '';
+parts.forEach(([name, slides], pi) => {
+  const pid = 'part-' + name.toLowerCase().replace(/[^a-z]+/g,'-');
+  toc += `<div><h3><a href="#${pid}">${name}</a></h3><ol>`;
+  html += `<section id="${pid}" class="${pi%2?'':'fill'}"><div class="wrap"><h2>${name}</h2>`;
+  slides.forEach(s => {
+    n++;
+    toc += `<li><span>${String(n).padStart(2,'0')}</span><a href="#${s.id}">${headOf(s)}</a></li>`;
+    let inner;
+    if (s.k==='summary') inner = summary();
+    else if (s.k==='end') inner = end();
+    else if (s.art) inner = `${s.strip||''}
+      <div class="two"><div><div class="say" data-m="wipe">${s.say}</div><div class="fix" data-m="fade" style="--i:3">${s.fix}</div></div>${s.art}</div>
+      ${foot(n)}`;
+    else inner = `${s.strip||''}
+      <div class="say${s.viz||s.items?' up':''}" data-m="${s.mo==='wipe'?'wipe':'fade'}">${s.say}</div>
+      ${s.by?`<div class="by" data-m="fade" style="--i:1">${s.by}</div>`:''}
+      ${s.k==='list' ? `<ol class="list">${s.items.map((t,i)=>`<li data-m="fade" style="--i:${i+1}">${t}</li>`).join('')}</ol>` : (s.viz || '')}
+      ${s.tag?`<span class="tag">${s.tag}</span>`:''}
+      ${foot(n)}`;
+    const body = PROSE[s.id] || `<p>${s.fact||''}</p><p>${s.note||''}</p>`;
+    html += `<article id="${s.id}"><figure><div class="slide" role="img" aria-label="Slide ${n}: ${headOf(s).replace(/"/g,'&quot;')}">${inner}</div></figure>
+      <div class="notes"><aside class="rail"><span class="no">Slide ${String(n).padStart(2,'0')} of ${total}</span><h4>More in the guide</h4><ul>${srcLinks(s.src)}</ul><a href="#index">Back to the index</a></aside><div class="prose">${body}</div></div></article>`;
+  });
+  toc += '</ol></div>';
+  html += '</div></section>';
+});
+document.getElementById('deck').innerHTML = html;
+document.getElementById('toc').innerHTML = toc;
+document.getElementById('count').textContent = total;
+document.getElementById('lockup').src = LOCKUP;
+document.getElementById('hero-motif').innerHTML = MOTIF_HERO;
+
+const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('play'); io.unobserve(e.target); } }), {threshold: .5});
+document.querySelectorAll('.slide').forEach(el => {
+  io.observe(el);
+  el.addEventListener('click', () => { el.classList.remove('play'); void el.offsetWidth; el.classList.add('play'); });
+});
+if (location.hash) document.getElementById(location.hash.slice(1))?.scrollIntoView();
+if (new URLSearchParams(location.search).has('static')) document.body.classList.add('static'), document.querySelectorAll('.slide').forEach(el => el.classList.add('play'));
+</script>
+</body>
+</html>
